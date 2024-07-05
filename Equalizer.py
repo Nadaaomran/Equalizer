@@ -50,37 +50,152 @@ class Ui_MainWindow(object):
         MainWindow.setFocusPolicy(QtCore.Qt.WheelFocus)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        style_sheet = """
+            QWidget#centralwidget {
+                background-color: #444444; /* Dark gray matte background */
+                color: #ccc; /* Light gray text color */
+            }
+
+            QPushButton {
+                border: 1px solid #666666; /* Darker border */
+                border-radius: 5px;
+                background-color: #555555; /* Dark gray */
+                color: #ccc;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #666666; /* Slightly lighter gray on hover */
+            }
+            QPushButton:pressed {
+                background-color: #444444; /* Darker gray when pressed */
+            }
+
+            QComboBox {
+                border: 1px solid #666666;
+                border-radius: 5px;
+                background-color: #555555;
+                color: #ccc;
+                padding: 1px 18px 1px 3px;
+                min-width: 6em;
+            }
+            QComboBox:editable {
+                background: white;
+            }
+            QComboBox:!editable, QComboBox::drop-down:editable {
+                background: #555555;
+            }
+            QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+                background: #666666;
+            }
+            QComboBox::drop-down {
+                subcontrol-origin: padding;
+                subcontrol-position: top right;
+                width: 15px;
+                border-left: none;
+            }
+            QComboBox::down-arrow {
+                width: 15px;
+                height: 15px;
+                image: url(down_arrow.png); /* Path to your custom down arrow */
+            }
+
+            QSlider::groove:horizontal, QSlider::groove:vertical {
+                border: 1px solid #666666;
+                background: #555555;
+                border-radius: 5px;
+            }
+            QSlider::groove:horizontal {
+                height: 8px;
+                margin: 2px 0;
+            }
+            QSlider::groove:vertical {
+                width: 8px;
+                margin: 0 2px;
+            }
+            QSlider::handle:horizontal, QSlider::handle:vertical {
+                background: #666666;
+                border: 1px solid #666666;
+                border-radius: 5px;
+            }
+            QSlider::handle:horizontal {
+                width: 18px;
+                margin: -2px 0;
+            }
+            QSlider::handle:vertical {
+                height: 18px;
+                margin: 0 -2px;
+            }
+
+            QCheckBox {
+                spacing: 5px;
+                color: #ccc;
+            }
+            QCheckBox::indicator {
+                width: 15px;
+                height: 15px;
+                border: 1px solid #666666;
+                border-radius: 3px;
+                background: #555555;
+            }
+            QCheckBox::indicator:checked {
+                background: #ccc; /* Adjust to your preferred checked color */
+            }
+
+            QRadioButton {
+                spacing: 5px;
+                color: #ccc;
+            }
+            QRadioButton::indicator {
+                width: 15px;
+                height: 15px;
+                border: 1px solid #666666;
+                border-radius: 7px;
+                background: #555555;
+            }
+            QRadioButton::indicator:checked {
+                background: #ccc;
+            }
+
+            QLabel {
+                color: #ccc;
+            }
+
+            QGroupBox {
+                border: 1px solid #666666;
+                border-radius: 5px;
+                margin-top: 6px;
+                background-color: #555555;
+            }
+            QGroupBox::title {
+                subcontrol-origin: margin;
+                subcontrol-position: top left;
+                padding: 0 3px;
+                color: #ccc;
+            }
+
+            PlotWidget {
+                background-color: #555555;
+                border: 1px solid #666666;
+            }
+        """
+
+
+        self.centralwidget.setStyleSheet(style_sheet)
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.frame_4 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_4.setMinimumSize(QtCore.QSize(0, 410))
-        self.frame_4.setMaximumSize(QtCore.QSize(16777215, 500))
-        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_4.setObjectName("frame_4")
-        self.gridLayout_11 = QtWidgets.QGridLayout(self.frame_4)
-        self.gridLayout_11.setObjectName("gridLayout_11")
-        self.frame_5 = QtWidgets.QFrame(self.frame_4)
-        self.frame_5.setMinimumSize(QtCore.QSize(0, 380))
-        self.frame_5.setMaximumSize(QtCore.QSize(16777215, 680))
-        self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_5.setObjectName("frame_5")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.frame_5)
-        self.gridLayout_5.setObjectName("gridLayout_5")
-        self.verticalLayout_17 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_17.setObjectName("verticalLayout_17")
-        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.frame = QtWidgets.QFrame(self.centralwidget)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(self.frame_5)
-        self.label.setMinimumSize(QtCore.QSize(0, 13))
-        self.label.setMaximumSize(QtCore.QSize(16777215, 13))
+        self.label = QtWidgets.QLabel(self.frame)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
-        self.input_graph = PlotWidget(self.frame_5)
-        self.input_graph.setMinimumSize(QtCore.QSize(0, 130))
-        self.input_graph.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.input_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.input_graph = PlotWidget(self.frame)
+        # self.input_graph.setMinimumSize(QtCore.QSize(0, 130))
+        # self.input_graph.setMaximumSize(QtCore.QSize(16777215, 200))
+        # self.input_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.input_graph.setObjectName("input_graph")
 
         self.input_plot = self.input_graph.getPlotItem()
@@ -90,18 +205,13 @@ class Ui_MainWindow(object):
         self.input_curve = self.input_plot.plot()
 
         self.verticalLayout.addWidget(self.input_graph)
-        self.verticalLayout_17.addLayout(self.verticalLayout)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_2 = QtWidgets.QLabel(self.frame_5)
-        self.label_2.setMinimumSize(QtCore.QSize(0, 13))
-        self.label_2.setMaximumSize(QtCore.QSize(16777215, 13))
+        self.label_2 = QtWidgets.QLabel(self.frame)
         self.label_2.setObjectName("label_2")
-        self.verticalLayout_2.addWidget(self.label_2)
-        self.output_graph = PlotWidget(self.frame_5)
-        self.output_graph.setMinimumSize(QtCore.QSize(0, 130))
-        self.output_graph.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.output_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.verticalLayout.addWidget(self.label_2)
+        self.output_graph = PlotWidget(self.frame)
+        # self.output_graph.setMinimumSize(QtCore.QSize(0, 130))
+        # self.output_graph.setMaximumSize(QtCore.QSize(16777215, 200))
+        # self.output_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.output_graph.setObjectName("output_graph")
 
         self.output_plot = self.output_graph.getPlotItem()
@@ -109,341 +219,270 @@ class Ui_MainWindow(object):
         self.output_plot.setLabel('left', 'Amplitude')
         self.output_plot.setLabel('bottom', 'Time (s)')
         self.output_curve = self.output_plot.plot()
+        self.verticalLayout.addWidget(self.output_graph)
 
-        self.verticalLayout_2.addWidget(self.output_graph)
-        self.verticalLayout_17.addLayout(self.verticalLayout_2)
-        self.frame_2 = QtWidgets.QFrame(self.frame_5)
-        self.frame_2.setMinimumSize(QtCore.QSize(0, 40))
-        self.frame_2.setMaximumSize(QtCore.QSize(16777215, 40))
-        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_2.setObjectName("frame_2")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_2)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.scroll_slider = QtWidgets.QSlider(self.frame_2)
+        self.scroll_slider = QtWidgets.QSlider(self.frame)
         self.scroll_slider.setOrientation(QtCore.Qt.Horizontal)
         self.scroll_slider.setObjectName("scroll_slider")
-        self.gridLayout_2.addWidget(self.scroll_slider, 0, 0, 1, 1)
-        self.verticalLayout_17.addWidget(self.frame_2)
-        self.gridLayout_5.addLayout(self.verticalLayout_17, 0, 0, 1, 1)
-        self.gridLayout_11.addWidget(self.frame_5, 0, 0, 1, 1)
-        self.frame = QtWidgets.QFrame(self.frame_4)
-        self.frame.setMinimumSize(QtCore.QSize(80, 0))
-        self.frame.setMaximumSize(QtCore.QSize(80, 16777215))
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame.setObjectName("frame")
-        self.layoutWidget = QtWidgets.QWidget(self.frame)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 71, 141))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.layoutWidget)
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.uniform_mood = QtWidgets.QRadioButton(self.layoutWidget)
-        self.uniform_mood.setObjectName("uniform_mood")
-        self.verticalLayout_6.addWidget(self.uniform_mood)
-        self.uniform_mood.setChecked(True) 
-        self.musical_mood = QtWidgets.QRadioButton(self.layoutWidget)
-        self.musical_mood.setObjectName("musical_mood")
-        self.verticalLayout_6.addWidget(self.musical_mood)
-        self.animals_mood = QtWidgets.QRadioButton(self.layoutWidget)
-        self.animals_mood.setObjectName("animals_mood")
-        self.verticalLayout_6.addWidget(self.animals_mood)
-        self.ecg_mood = QtWidgets.QRadioButton(self.layoutWidget)
-        self.ecg_mood.setObjectName("ecg_mood")
-        self.verticalLayout_6.addWidget(self.ecg_mood)
-        self.gridLayout_11.addWidget(self.frame, 0, 2, 2, 1)
-        self.frame_11 = QtWidgets.QFrame(self.frame_4)
-        self.frame_11.setMinimumSize(QtCore.QSize(0, 40))
-        self.frame_11.setMaximumSize(QtCore.QSize(16777215, 40))
-        self.frame_11.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_11.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_11.setObjectName("frame_11")
-        self.gridLayout = QtWidgets.QGridLayout(self.frame_11)
-        self.gridLayout.setObjectName("gridLayout")
-        self.browse_button = QtWidgets.QPushButton(self.frame_11)
-        self.browse_button.setMinimumSize(QtCore.QSize(0, 30))
-        self.browse_button.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.verticalLayout.addWidget(self.scroll_slider)
+        self.horizontalLayout3 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout3.setObjectName("horizontalLayout3")
+        self.browse_button = QtWidgets.QPushButton(self.frame)
         self.browse_button.setObjectName("browse_button")
-        self.gridLayout.addWidget(self.browse_button, 0, 0, 1, 1)
-        self.pause_button = QtWidgets.QPushButton(self.frame_11)
-        self.pause_button.setMinimumSize(QtCore.QSize(0, 30))
-        self.pause_button.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.horizontalLayout3.addWidget(self.browse_button)
+        self.horizontalLayout3.setStretch(0,1)
+        self.pause_button = QtWidgets.QPushButton(self.frame)
         self.pause_button.setObjectName("pause_button")
-        self.gridLayout.addWidget(self.pause_button, 0, 1, 1, 1)
-        self.zoomin_button = QtWidgets.QPushButton(self.frame_11)
-        self.zoomin_button.setMinimumSize(QtCore.QSize(0, 30))
-        self.zoomin_button.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.horizontalLayout3.addWidget(self.pause_button)
+        self.horizontalLayout3.setStretch(1,1)
+        self.zoomin_button = QtWidgets.QPushButton(self.frame)
         self.zoomin_button.setObjectName("zoomin_button")
-        self.gridLayout.addWidget(self.zoomin_button, 0, 2, 1, 1)
-        self.zoomout_button = QtWidgets.QPushButton(self.frame_11)
-        self.zoomout_button.setMinimumSize(QtCore.QSize(0, 30))
-        self.zoomout_button.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.horizontalLayout3.addWidget(self.zoomin_button)
+        self.horizontalLayout3.setStretch(2,1)
+        self.zoomout_button = QtWidgets.QPushButton(self.frame)
         self.zoomout_button.setObjectName("zoomout_button")
-        self.gridLayout.addWidget(self.zoomout_button, 0, 3, 1, 1)
-        self.speed_label = QtWidgets.QLabel(self.frame_11)
-        self.speed_label.setMinimumSize(QtCore.QSize(40, 30))
-        self.speed_label.setMaximumSize(QtCore.QSize(40, 30))
+        self.horizontalLayout3.addWidget(self.zoomout_button)
+        self.horizontalLayout3.setStretch(3,1)
+        self.speed_label = QtWidgets.QLabel(self.frame)
         self.speed_label.setObjectName("speed_label")
-        self.gridLayout.addWidget(self.speed_label, 0, 4, 1, 1)
-        self.speed_combobox = QtWidgets.QComboBox(self.frame_11)
-        self.speed_combobox.setMinimumSize(QtCore.QSize(30, 30))
-        self.speed_combobox.setMaximumSize(QtCore.QSize(500, 30))
+        self.horizontalLayout3.addWidget(self.speed_label)
+        self.horizontalLayout3.setStretch(4,0)
+        self.speed_combobox = QtWidgets.QComboBox(self.frame)
         self.speed_combobox.setObjectName("speed_combobox")
         speed_values = ['0.5', '1', '1.5', '2']
         self.speed_combobox.addItems(speed_values)
         self.speed_combobox.setCurrentIndex(-1)
-        self.gridLayout.addWidget(self.speed_combobox, 0, 5, 1, 1)
-        self.gridLayout_11.addWidget(self.frame_11, 1, 0, 1, 2)
-        self.frame_6 = QtWidgets.QFrame(self.frame_4)
-        self.frame_6.setMinimumSize(QtCore.QSize(350, 380))
-        self.frame_6.setMaximumSize(QtCore.QSize(550, 380))
-        self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_6.setObjectName("frame_6")
-        self.gridLayout_6 = QtWidgets.QGridLayout(self.frame_6)
-        self.gridLayout_6.setObjectName("gridLayout_6")
-        self.verticalLayout_5 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.frame_9 = QtWidgets.QFrame(self.frame_6)
-        self.frame_9.setMinimumSize(QtCore.QSize(0, 50))
-        self.frame_9.setMaximumSize(QtCore.QSize(16777215, 50))
-        self.frame_9.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_9.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_9.setObjectName("frame_9")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_9)
-        self.gridLayout_4.setObjectName("gridLayout_4")
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setSpacing(10)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.hide_checkbox = QtWidgets.QCheckBox(self.frame_9)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.hide_checkbox.sizePolicy().hasHeightForWidth())
-        self.hide_checkbox.setSizePolicy(sizePolicy)
-        self.hide_checkbox.setObjectName("hide_checkbox")
-        self.horizontalLayout.addWidget(self.hide_checkbox)
-        self.gridLayout_4.addLayout(self.horizontalLayout, 0, 0, 1, 1)
-        self.reset_button = QtWidgets.QPushButton(self.frame_9)
-        self.reset_button.setObjectName("reset_button")
-        self.gridLayout_4.addWidget(self.reset_button, 0, 1, 1, 1)
-        self.verticalLayout_5.addWidget(self.frame_9)
-        self.gridLayout_6.addLayout(self.verticalLayout_5, 1, 0, 1, 1)
-        self.frame_10 = QtWidgets.QFrame(self.frame_6)
-        self.frame_10.setMinimumSize(QtCore.QSize(0, 320))
-        self.frame_10.setMaximumSize(QtCore.QSize(16777215, 680))
-        self.frame_10.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_10.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_10.setObjectName("frame_10")
-        self.gridLayout_10 = QtWidgets.QGridLayout(self.frame_10)
-        self.gridLayout_10.setObjectName("gridLayout_10")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.horizontalLayout3.addWidget(self.speed_combobox)
+        self.horizontalLayout3.setStretch(5,1)
+        self.verticalLayout.addLayout(self.horizontalLayout3)
+        self.gridLayout_3.addWidget(self.frame, 0, 0, 1, 1)
+        self.frame2 = QtWidgets.QFrame(self.centralwidget)
+        self.frame2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame2.setObjectName("frame2")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame2)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_3 = QtWidgets.QLabel(self.frame_10)
-        self.label_3.setMinimumSize(QtCore.QSize(0, 13))
-        self.label_3.setMaximumSize(QtCore.QSize(16777215, 13))
+        self.label_3 = QtWidgets.QLabel(self.frame2)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
-        self.input_spectrogram = PlotWidget(self.frame_10)
-        self.input_spectrogram.setMinimumSize(QtCore.QSize(0, 130))
-        self.input_spectrogram.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.input_spectrogram.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.input_spectrogram = PlotWidget(self.frame2)
+        # self.input_spectrogram.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.input_spectrogram.setObjectName("input_spectrogram")
         self.verticalLayout_3.addWidget(self.input_spectrogram)
-        self.gridLayout_10.addLayout(self.verticalLayout_3, 0, 0, 1, 1)
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
-        self.label_4 = QtWidgets.QLabel(self.frame_10)
-        self.label_4.setMinimumSize(QtCore.QSize(0, 13))
-        self.label_4.setMaximumSize(QtCore.QSize(16777215, 13))
+        self.label_4 = QtWidgets.QLabel(self.frame2)
         self.label_4.setObjectName("label_4")
-        self.verticalLayout_4.addWidget(self.label_4)
-        self.output_spectrogram = PlotWidget(self.frame_10)
-        self.output_spectrogram.setMinimumSize(QtCore.QSize(0, 130))
-        self.output_spectrogram.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.output_spectrogram.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.verticalLayout_3.addWidget(self.label_4)
+        self.output_spectrogram = PlotWidget(self.frame2)
+        # self.output_spectrogram.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.output_spectrogram.setObjectName("output_spectrogram")
-        self.verticalLayout_4.addWidget(self.output_spectrogram)
-        self.gridLayout_10.addLayout(self.verticalLayout_4, 1, 0, 1, 1)
-        self.gridLayout_6.addWidget(self.frame_10, 0, 0, 1, 1)
-        self.gridLayout_11.addWidget(self.frame_6, 0, 1, 1, 1)
-        self.gridLayout_3.addWidget(self.frame_4, 0, 0, 1, 2)
-        self.FT_graph = PlotWidget(self.centralwidget)
-        self.FT_graph.setMinimumSize(QtCore.QSize(0, 130))
-        self.FT_graph.setMaximumSize(QtCore.QSize(16777215, 300))
-        self.FT_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.verticalLayout_3.addWidget(self.output_spectrogram)
+        self.verticalLayout_3.addSpacing(30)
+        self.horizontalLayout2 = QtWidgets.QHBoxLayout(self.frame2)
+        self.horizontalLayout2.setObjectName("horizontalLayout2")
+        self.hide_checkbox = QtWidgets.QCheckBox(self.frame2)
+        self.hide_checkbox.setObjectName("hide_checkbox")
+        self.horizontalLayout2.addSpacing(15)
+        self.horizontalLayout2.addWidget(self.hide_checkbox)
+        self.reset_button = QtWidgets.QPushButton(self.frame2)
+        self.reset_button.setObjectName("reset_button")
+        self.horizontalLayout2.addStretch()
+        self.horizontalLayout2.addWidget(self.reset_button)
+        self.verticalLayout_3.addLayout(self.horizontalLayout2)
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.centralwidget)
+        self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.verticalLayout_8.addSpacing(30)
+        self.mode_groupbox = QtWidgets.QGroupBox(self.centralwidget)
+        self.mode_groupbox.setObjectName("mode_groupbox")
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.mode_groupbox)
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.uniform_mood = QtWidgets.QRadioButton(self.mode_groupbox)
+        self.uniform_mood.setObjectName("uniform_mood")
+        self.verticalLayout_6.addWidget(self.uniform_mood)
+        self.verticalLayout_6.addSpacing(20)
+        self.uniform_mood.setChecked(True) 
+        self.musical_mood = QtWidgets.QRadioButton(self.mode_groupbox)
+        self.musical_mood.setObjectName("musical_mood")
+        self.verticalLayout_6.addWidget(self.musical_mood)
+        self.verticalLayout_6.addSpacing(20)
+        self.animals_mood = QtWidgets.QRadioButton(self.mode_groupbox)
+        self.animals_mood.setObjectName("animals_mood")
+        self.verticalLayout_6.addWidget(self.animals_mood)
+        self.verticalLayout_6.addSpacing(20)
+        self.ecg_mood = QtWidgets.QRadioButton(self.mode_groupbox)
+        self.ecg_mood.setObjectName("ecg_mood")
+        self.verticalLayout_6.addWidget(self.ecg_mood)
+        self.verticalLayout_6.addSpacing(20)
+        self.verticalLayout_8.addWidget(self.mode_groupbox)
+        self.window_groupbox = QtWidgets.QGroupBox(self.centralwidget)
+        self.window_groupbox.setObjectName("window_groupbox")
+        self.gridLayout_8 = QtWidgets.QGridLayout(self.window_groupbox)
+        self.gridLayout_8.setObjectName("gridLayout_8")
+        self.window_combobox = QtWidgets.QComboBox(self.window_groupbox)
+        self.window_combobox.setObjectName("window_combobox")
+        self.gridLayout_8.addWidget(self.window_combobox, 0, 0, 1, 1)
+        self.verticalLayout_8.addWidget(self.window_groupbox)
+        self.verticalLayout_8.addSpacing(80)
+        self.gridLayout_3.addWidget(self.frame2, 0, 1, 1, 1)
+        self.gridLayout_3.addLayout(self.verticalLayout_8, 0, 2, 1, 1)
+        
+        self.frame3 = QtWidgets.QFrame(self.centralwidget)
+        self.frame3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame3.setObjectName("frame3")
+        self.gridLayout_1 = QtWidgets.QGridLayout(self.frame3)
+        self.gridLayout_1.setObjectName("gridLayout_3")
+        self.verticalLayout5 = QtWidgets.QVBoxLayout(self.frame3)
+        self.verticalLayout5.setObjectName("verticalLayout5")
+        self.FT_graph = PlotWidget(self.frame3)
+        # self.FT_graph.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.FT_graph.setObjectName("FT_graph")
-        self.gridLayout_3.addWidget(self.FT_graph, 1, 0, 2, 1)
-        self.frame_3 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_3.setMinimumSize(QtCore.QSize(95, 0))
-        self.frame_3.setMaximumSize(QtCore.QSize(95, 16777215))
-        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.gridLayout_3.addWidget(self.frame_3, 2, 1, 1, 1)
-        self.frame_8 = QtWidgets.QFrame(self.centralwidget)
-        self.frame_8.setMinimumSize(QtCore.QSize(0, 130))
-        self.frame_8.setMaximumSize(QtCore.QSize(16777215, 110))
-        self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_8.setObjectName("frame_8")
-        self.gridLayout_9 = QtWidgets.QGridLayout(self.frame_8)
-        self.gridLayout_9.setObjectName("gridLayout_9")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
-        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.frame_7 = QtWidgets.QFrame(self.frame_8)
-        self.frame_7.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_7.setObjectName("frame_7")
-        self.gridLayout_7 = QtWidgets.QGridLayout(self.frame_7)
-        self.gridLayout_7.setObjectName("gridLayout_7")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+        self.verticalLayout5.addWidget(self.FT_graph)
+        self.verticalLayout5.addSpacing(30)
+        self.gridLayout_1.addLayout(self.verticalLayout5, 0,0,1,1)
+        self.verticalLayout6 = QtWidgets.QVBoxLayout(self.frame3)
+        self.verticalLayout6.setObjectName("verticalLayout6")
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.frame3)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
-        self.slider1 = QtWidgets.QSlider(self.frame_7)
+        self.slider1 = QtWidgets.QSlider(self.frame3)
         self.slider1.setOrientation(QtCore.Qt.Vertical)
         self.slider1.setObjectName("slider1")
         self.verticalLayout_7.addWidget(self.slider1)
         self.slider1.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider1.sliderReleased.connect(lambda: self.plot_selected_window(0,self.slider1.value()))
-        self.label1 = QtWidgets.QLabel(self.frame_7)
+        self.label1 = QtWidgets.QLabel(self.frame3)
         self.label1.setObjectName("label1")
         self.verticalLayout_7.addWidget(self.label1)
         self.horizontalLayout_7.addLayout(self.verticalLayout_7)
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_8.setObjectName("verticalLayout_8")
-        self.slider2 = QtWidgets.QSlider(self.frame_7)
+        self.slider2 = QtWidgets.QSlider(self.frame3)
         self.slider2.setOrientation(QtCore.Qt.Vertical)
         self.slider2.setObjectName("slider2")
         self.verticalLayout_8.addWidget(self.slider2)
         self.slider2.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider2.sliderReleased.connect(lambda: self.plot_selected_window(1,self.slider2.value()))
-        self.label2 = QtWidgets.QLabel(self.frame_7)
+        self.label2 = QtWidgets.QLabel(self.frame3)
         self.label2.setObjectName("label2")
         self.verticalLayout_8.addWidget(self.label2)
         self.horizontalLayout_7.addLayout(self.verticalLayout_8)
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.slider3 = QtWidgets.QSlider(self.frame_7)
+        self.slider3 = QtWidgets.QSlider(self.frame3)
         self.slider3.setOrientation(QtCore.Qt.Vertical)
         self.slider3.setObjectName("slider3")
         self.verticalLayout_9.addWidget(self.slider3)
         self.slider3.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider3.sliderReleased.connect(lambda: self.plot_selected_window(2,self.slider3.value()))
-        self.label3 = QtWidgets.QLabel(self.frame_7)
+        self.label3 = QtWidgets.QLabel(self.frame3)
         self.label3.setObjectName("label3")
         self.verticalLayout_9.addWidget(self.label3)
         self.horizontalLayout_7.addLayout(self.verticalLayout_9)
         self.verticalLayout_10 = QtWidgets.QVBoxLayout()
         self.verticalLayout_10.setObjectName("verticalLayout_10")
-        self.slider4 = QtWidgets.QSlider(self.frame_7)
+        self.slider4 = QtWidgets.QSlider(self.frame3)
         self.slider4.setOrientation(QtCore.Qt.Vertical)
         self.slider4.setObjectName("slider4")
         self.verticalLayout_10.addWidget(self.slider4)
         self.slider4.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider4.sliderReleased.connect(lambda: self.plot_selected_window(3,self.slider4.value()))
-        self.label4 = QtWidgets.QLabel(self.frame_7)
+        self.label4 = QtWidgets.QLabel(self.frame3)
         self.label4.setObjectName("label4")
         self.verticalLayout_10.addWidget(self.label4)
         self.horizontalLayout_7.addLayout(self.verticalLayout_10)
-        self.verticalLayout_11 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
-        self.slider5 = QtWidgets.QSlider(self.frame_7)
+        self.slider5 = QtWidgets.QSlider(self.frame3)
         self.slider5.setOrientation(QtCore.Qt.Vertical)
         self.slider5.setObjectName("slider5")
         self.verticalLayout_11.addWidget(self.slider5)
         self.slider5.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider5.sliderReleased.connect(lambda: self.plot_selected_window(4,self.slider5.value()))
-        self.label5 = QtWidgets.QLabel(self.frame_7)
+        self.label5 = QtWidgets.QLabel(self.frame3)
         self.label5.setObjectName("label5")
         self.verticalLayout_11.addWidget(self.label5)
         self.horizontalLayout_7.addLayout(self.verticalLayout_11)
-        self.verticalLayout_12 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
-        self.slider6 = QtWidgets.QSlider(self.frame_7)
+        self.slider6 = QtWidgets.QSlider(self.frame3)
         self.slider6.setOrientation(QtCore.Qt.Vertical)
         self.slider6.setObjectName("slider6")
         self.verticalLayout_12.addWidget(self.slider6)
         self.slider6.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider6.sliderReleased.connect(lambda: self.plot_selected_window(5,self.slider6.value()))
-        self.label6 = QtWidgets.QLabel(self.frame_7)
+        self.label6 = QtWidgets.QLabel(self.frame3)
         self.label6.setObjectName("label6")
         self.verticalLayout_12.addWidget(self.label6)
         self.horizontalLayout_7.addLayout(self.verticalLayout_12)
         self.verticalLayout_13 = QtWidgets.QVBoxLayout()
         self.verticalLayout_13.setObjectName("verticalLayout_13")
-        self.slider7 = QtWidgets.QSlider(self.frame_7)
+        self.slider7 = QtWidgets.QSlider(self.frame3)
         self.slider7.setOrientation(QtCore.Qt.Vertical)
         self.slider7.setObjectName("slider7")
         self.verticalLayout_13.addWidget(self.slider7)
         self.slider7.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider7.sliderReleased.connect(lambda: self.plot_selected_window(6,self.slider7.value()))
-        self.label7 = QtWidgets.QLabel(self.frame_7)
+        self.label7 = QtWidgets.QLabel(self.frame3)
         self.label7.setObjectName("label7")
         self.verticalLayout_13.addWidget(self.label7)
         self.horizontalLayout_7.addLayout(self.verticalLayout_13)
-        self.verticalLayout_14 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
-        self.slider8 = QtWidgets.QSlider(self.frame_7)
+        self.slider8 = QtWidgets.QSlider(self.frame3)
         self.slider8.setOrientation(QtCore.Qt.Vertical)
         self.slider8.setObjectName("slider8")
         self.verticalLayout_14.addWidget(self.slider8)
         self.slider8.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider8.sliderReleased.connect(lambda: self.plot_selected_window(7,self.slider8.value()))
-        self.label8 = QtWidgets.QLabel(self.frame_7)
+        self.label8 = QtWidgets.QLabel(self.frame3)
         self.label8.setObjectName("label8")
         self.verticalLayout_14.addWidget(self.label8)
         self.horizontalLayout_7.addLayout(self.verticalLayout_14)
-        self.verticalLayout_15 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_15.setObjectName("verticalLayout_15")
-        self.slider9 = QtWidgets.QSlider(self.frame_7)
+        self.slider9 = QtWidgets.QSlider(self.frame3)
         self.slider9.setOrientation(QtCore.Qt.Vertical)
         self.slider9.setObjectName("slider9")
         self.verticalLayout_15.addWidget(self.slider9)
         self.slider9.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider9.sliderReleased.connect(lambda: self.plot_selected_window(8,self.slider9.value()))
-        self.label9 = QtWidgets.QLabel(self.frame_7)
+        self.label9 = QtWidgets.QLabel(self.frame3)
         self.label9.setObjectName("label9")
         self.verticalLayout_15.addWidget(self.label9)
         self.horizontalLayout_7.addLayout(self.verticalLayout_15)
-        self.verticalLayout_16 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.frame3)
         self.verticalLayout_16.setObjectName("verticalLayout_16")
-        self.slider10 = QtWidgets.QSlider(self.frame_7)
+        self.slider10 = QtWidgets.QSlider(self.frame3)
         self.slider10.setOrientation(QtCore.Qt.Vertical)
         self.slider10.setObjectName("slider10")
         self.verticalLayout_16.addWidget(self.slider10)
         self.slider10.sliderReleased.connect(lambda: self.fourier_transform(self.data))
         self.slider10.sliderReleased.connect(lambda: self.plot_selected_window(9,self.slider10.value()))
-        self.label10 = QtWidgets.QLabel(self.frame_7)
+        self.label10 = QtWidgets.QLabel(self.frame3)
         self.label10.setObjectName("label10")
         self.verticalLayout_16.addWidget(self.label10)
         self.horizontalLayout_7.addLayout(self.verticalLayout_16)
-        self.gridLayout_7.addLayout(self.horizontalLayout_7, 0, 0, 1, 1)
-        self.horizontalLayout_8.addWidget(self.frame_7)
-        self.window_groupbox = QtWidgets.QGroupBox(self.frame_8)
-        self.window_groupbox.setMinimumSize(QtCore.QSize(200, 0))
-        self.window_groupbox.setMaximumSize(QtCore.QSize(200, 16777215))
-        self.window_groupbox.setObjectName("window_groupbox")
-        self.gridLayout_8 = QtWidgets.QGridLayout(self.window_groupbox)
-        self.gridLayout_8.setObjectName("gridLayout_8")
-        self.window_combobox = QtWidgets.QComboBox(self.window_groupbox)
-        self.window_combobox.setMinimumSize(QtCore.QSize(0, 25))
-        self.window_combobox.setMaximumSize(QtCore.QSize(16777215, 25))
-        self.window_combobox.setObjectName("window_combobox")
-        self.gridLayout_8.addWidget(self.window_combobox, 0, 0, 1, 1)
-        self.horizontalLayout_8.addWidget(self.window_groupbox)
-        self.gridLayout_9.addLayout(self.horizontalLayout_8, 0, 0, 1, 1)
-        self.gridLayout_3.addWidget(self.frame_8, 3, 0, 1, 2)
+        
+        # self.window_groupbox = QtWidgets.QGroupBox(self.frame3)
+        # self.window_groupbox.setObjectName("window_groupbox")
+        # self.gridLayout_8 = QtWidgets.QGridLayout(self.window_groupbox)
+        # self.gridLayout_8.setObjectName("gridLayout_8")
+        # self.window_combobox = QtWidgets.QComboBox(self.window_groupbox)
+        # self.window_combobox.setObjectName("window_combobox")
+        # self.gridLayout_8.addWidget(self.window_combobox, 0, 0, 1, 1)
+        # self.horizontalLayout_7.addWidget(self.window_groupbox)
+        self.verticalLayout6.addLayout(self.horizontalLayout_7)
+        self.gridLayout_1.addLayout(self.verticalLayout6, 2,0,2,1)
+        self.gridLayout_3.addWidget(self.frame3, 1, 0, 1, 3)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 840, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        # self.menubar = QtWidgets.QMenuBar(MainWindow)
+        # self.menubar.setGeometry(QtCore.QRect(0, 0, 840, 21))
+        # self.menubar.setObjectName("menubar")
+        # MainWindow.setMenuBar(self.menubar)
+        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        # self.statusbar.setObjectName("statusbar")
+        # MainWindow.setStatusBar(self.statusbar)
 
         self.input_graph.scene().sigMouseClicked.connect(lambda: self.play_input_signal(True))
         self.output_graph.scene().sigMouseClicked.connect(lambda: self.play_input_signal(False))
@@ -592,10 +631,12 @@ class Ui_MainWindow(object):
     def toggle_slider_visibility(self):
         if self.index:
             for slider_index, slider_name in enumerate(self.sliders_names[len(self.sliders_labels[self.index]):], start=len(self.sliders_labels[self.index])):
+                self.horizontalLayout_7.setContentsMargins(300,0,0,0)
                 self.hide_object(slider_name)
                 self.hide_object('label'+ str(slider_index +1))
         else:
             for slider_index, slider_name in enumerate(self.sliders_names):
+                self.horizontalLayout_7.setContentsMargins(0,0,0,0)
                 self.hide_object(slider_name)
                 self.hide_object('label'+ str(slider_index +1))
 
@@ -802,7 +843,7 @@ class Ui_MainWindow(object):
 
     def plot_selected_window(self,i, value):
         if len(self.sliders_indices[i]) != 0 :
-            x,y= self.window_calculations(i, value, self.fourier_magnitude.max()/150)
+            x,y= self.window_calculations(i, value, self.fourier_magnitude.max()/50)
             self.FT_graph.plot(x, y, pen='r')
 
     def plot_spectrogram(self, data):
@@ -877,15 +918,15 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Original Plot"))
-        self.label_2.setText(_translate("MainWindow", "Equalizer Plot"))
+        self.label_2.setText(_translate("MainWindow", "Processed Plot"))
         self.label_3.setText(_translate("MainWindow", "Original Spectrogram"))
-        self.label_4.setText(_translate("MainWindow", "Equalizer Spectrogram"))
+        self.label_4.setText(_translate("MainWindow", "Processed Spectrogram"))
         self.hide_checkbox.setText(_translate("MainWindow", "Hide Spectrograms"))
         self.reset_button.setText(_translate("MainWindow", "Reset"))
-        self.uniform_mood.setText(_translate("MainWindow", "Uniform"))
-        self.musical_mood.setText(_translate("MainWindow", "Musical"))
+        self.uniform_mood.setText(_translate("MainWindow", "Uniform Signals"))
+        self.musical_mood.setText(_translate("MainWindow", "Musical Instruments"))
         self.animals_mood.setText(_translate("MainWindow", "Animals"))
-        self.ecg_mood.setText(_translate("MainWindow", "ECG"))
+        self.ecg_mood.setText(_translate("MainWindow", "ECG Arrhythmias"))
         self.browse_button.setText(_translate("MainWindow", "Browse"))
         self.pause_button.setText(_translate("MainWindow", "Pause"))
         self.zoomin_button.setText(_translate("MainWindow", "Zoom In"))
@@ -901,7 +942,8 @@ class Ui_MainWindow(object):
         self.label8.setText(_translate("MainWindow", "Text"))
         self.label9.setText(_translate("MainWindow", "Text"))
         self.label10.setText(_translate("MainWindow", "Text"))
-        self.window_groupbox.setTitle(_translate("MainWindow", "Window"))
+        self.window_groupbox.setTitle(_translate("MainWindow", "Smoothing Window"))
+        self.mode_groupbox.setTitle(_translate("MainWindow", "Mode"))
 
 
 if __name__ == "__main__":
