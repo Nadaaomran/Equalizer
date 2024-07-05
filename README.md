@@ -1,5 +1,5 @@
 # Equalizer
-![App Screanshot](Image\APP.png)
+![App Screanshot](Image/APP.png)
 ## Overview
 
 The Signal Equalizer Application is a desktop program designed to open a signal and provide the user with the ability to modify the magnitude of specific frequency components using sliders. The application operates in various modes, allowing users to manipulate signals with different characteristics, such as uniform range, musical instruments, animal sounds, and ECG abnormalities. Additionally, users can apply different multiplication/smoothing windows to customize the equalization process.
